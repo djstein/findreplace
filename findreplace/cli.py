@@ -1,3 +1,4 @@
+import sys
 import click
 from findreplace.core import findreplace
 
@@ -12,11 +13,11 @@ def cli():
 
 
 @cli.command('replace')
+@click.argument('base_dir', required=True)
 @click.argument('find_val', required=True)
 @click.argument('replace_val', required=True)
-@click.option('--perm', is_flag=True)
-def replace(find_val, replace_val, perm):
-    findreplace(find_val, replace_val)
+def replace(base_dir, find_val, replace_val):
+    findreplace(base_dir, find_val, replace_val)
 
 
 def main():
