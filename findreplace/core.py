@@ -17,9 +17,3 @@ def findreplace(base_dir='', find_val='', new_val=''):
             if replace_data:
                 with open(file_name, 'w') as file:
                     file.write(replace_data)
-
-def main():
-    findreplace(ROOT_DIR, '', '')
-
-if __name__ == '__main__':
-    main()
