@@ -17,7 +17,9 @@ def cli():
 @click.argument('find_val', required=True)
 @click.argument('replace_val', required=True)
 def replace(base_dir, find_val, replace_val):
-    findreplace(base_dir, find_val, replace_val)
+    find_replace_dict = {}
+    find_replace_dict[find_val] = replace_val
+    findreplace(base_dir, find_replace_dict)
 
 
 def main():
