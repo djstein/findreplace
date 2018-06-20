@@ -10,4 +10,9 @@ example
 
 ```python
 findreplace replace ~/git/findreplace/testdir '{{example}}' main
+
+from findreplace.core import findreplace
+base_dir='~/git/findreplace/testdir'
+find_replace_dict = {'{{example}}': 'main', '{{dog}}': 'test'}
+findreplace(base_dir=base_dir, find_replace_dict=find_replace_dict)
 ```
