@@ -31,7 +31,7 @@ def findreplace(base_dir=ROOT_DIR, find_replace_dict={}, delete=True):
                                 del_dirs.append(path_dir)
 
                 if os.path.isfile(path):
-                    with open(path, 'r') as file :
+                    with open(path, 'r', encoding ='utf-8') as file :
                         data = file.read()
 
                     replace_data = data
@@ -40,7 +40,7 @@ def findreplace(base_dir=ROOT_DIR, find_replace_dict={}, delete=True):
 
                     if replace_data != data:
                         file_path = new_path if new_path else path
-                        with open(file_path, 'w') as file:
+                        with open(file_path, 'w', encoding ='utf-8') as file:
                             file.write(replace_data)
 
                     if not os.access(path, os.W_OK):
