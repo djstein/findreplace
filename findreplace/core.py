@@ -4,6 +4,8 @@ import shutil
 
 ROOT_DIR = os.path.dirname(os.path.realpath(__file__))
 
+SKIP_FILES = ['.DS_Store']
+
 def replace_file(data, find_val, new_val):
     return data.replace(find_val, new_val)
 
@@ -15,6 +17,7 @@ def findreplace(base_dir=ROOT_DIR, find_replace_dict={}, delete=True):
     if find_replace_dict:
         find_keys = find_replace_dict.keys()
         for root, dirs, files in os.walk(base_dir):
+            files = [file for file in files if file not in SKIP_FILES]
             for filename in files:
                 replace_data = None
                 path = os.path.join(base_dir, root, filename)
