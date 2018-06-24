@@ -6,11 +6,11 @@ ROOT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 SKIP_FILES = ['.DS_Store']
 
-def replace_file(data, find_val, new_val):
+def replace_content(data, find_val, new_val):
     return data.replace(find_val, new_val)
 
 
-def findreplace(base_dir=ROOT_DIR, find_replace_dict={}, delete=True):
+def findreplace(base_dir=ROOT_DIR, find_replace_dict={}, delete=True, copy_unmatched=True):
     del_dirs = []
     if '~' in base_dir:
         base_dir = os.path.expanduser(base_dir)
@@ -39,10 +39,11 @@ def findreplace(base_dir=ROOT_DIR, find_replace_dict={}, delete=True):
 
                     replace_data = data
                     for find_val in find_keys:
-                        replace_data = replace_file(replace_data, find_val, find_replace_dict.get(find_val))
+                        replace_data = replace_content(replace_data, find_val, find_replace_dict.get(find_val))
 
-                    if replace_data != data:
+                    if copy_unmatched or replace_data != data:
                         file_path = new_path if new_path else path
+                        print(file_path)
                         with open(file_path, 'w', encoding ='utf-8') as file:
                             file.write(replace_data)
 
